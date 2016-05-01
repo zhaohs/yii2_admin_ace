@@ -1,0 +1,8 @@
+class_name: ApiTester
+modules:
+    enabled:
+        - \Helper\Api
+        - REST:
+            url: http://oauth.zhenjing.pengpengla.com
+            depends: PhpBrowser
+            part: Json
