@@ -10,13 +10,11 @@ use yii\grid\GridView;
 $this->title = '菜单管理';
 $this->title = '用户管理';
 $this->params['breadcrumbs'][] = $this->title;
+\app\libs\Utility::viewToolsBars([
+    Html::a('新建', ['create'], ['class' => 'btn btn-xs btn-primary mod-site-save'])
+]);
 ?>
-<div class="row">
-    <a href="/menu/menu-category/create">
-        <button type="button" class="widget-toolbar" style="float:left">
-            <span class="bigger-110">新建</span>
-        </button></a>
-</div>
+
 
 <!-- PAGE CONTENT ENDS -->
 </div>

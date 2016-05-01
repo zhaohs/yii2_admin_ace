@@ -1,27 +1,28 @@
 <?php
 
-namespace app\modules\user\controllers;
+namespace app\modules\dict\controllers;
 
 use Yii;
-use app\models\User;
-use app\models\search\UserSearch;
+use app\modules\dict\models\Dict;
+use app\modules\dict\models\search\DictSearch;
+use app\core\back\BackController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\libs\Constants;
 
 /**
- * UserController implements the CRUD actions for User model.
+ * DictController implements the CRUD actions for Dict model.
  */
-class UserController extends \app\libs\BackController
+class DictController extends \app\libs\BackController
 {
 
     /**
-     * Lists all User models.
+     * Lists all Dict models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new UserSearch();
+        $searchModel = new DictSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -31,7 +32,7 @@ class UserController extends \app\libs\BackController
     }
 
     /**
-     * Displays a single User model.
+     * Displays a single Dict model.
      * @param integer $id
      * @return mixed
      */
@@ -43,56 +44,72 @@ class UserController extends \app\libs\BackController
     }
 
     /**
-     * Creates a new User model.
+     * Creates a new Dict model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($category)
     {
-        $model = new User();
-        $model->scenario='create';
-        $model->status = Constants::Status_Enable;
+        $model = new Dict();
+        $model->category_id=$category;
+        $model->sort_num=100;
+        $model->status=Constants::Status_Enable;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'category' => $category]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'rbacService' => $this->rbacService
             ]);
         }
     }
 
     /**
-     * Updates an existing User model.
+     * Updates an existing Dict model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
-        $model = User::findOne($id);
-        $model->scenario='update';
+        $model = $this->findModel($id);
+        $category=$model->category_id;
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'category' => $category]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'rbacService' => $this->rbacService,
             ]);
         }
     }
 
     /**
-     * Deletes an existing User model.
+     * Deletes an existing Dict model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        User::findOne($id)->delete();
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the Dict model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Dict the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Dict::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
     }
 }

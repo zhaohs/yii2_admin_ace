@@ -94,4 +94,17 @@ class Utility
             return $_SERVER['HTTP_X_FORWARDED_FOR'] ;
         }
     }
+
+    public static function viewToolsBars($barsArr = []) {
+        if ($barsArr) {
+            echo '<div class="row">';
+            echo ' <div class="col-sm-12">';
+            foreach ($barsArr as $bar) {
+                echo $bar;
+                echo "&nbsp;&nbsp;&nbsp;";
+            }
+            echo '</div></div>';
+        }
+    }
+
 }

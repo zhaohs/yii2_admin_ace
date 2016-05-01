@@ -48,16 +48,11 @@ $columns =  [
         ],*/
     ],
 ];
-?>
-<div class="row">
-    <div class="col-sm-12">
-       <a href="/rbac/permission/create">
-           <button type="button" class="widget-toolbar" style="float:left">
-               <span class="bigger-110">新建</span>
-           </button></a>
-    </div>
-</div>
+\app\libs\Utility::viewToolsBars([
+    Html::a('新建权限', ['create','category'=>$categoryId], ['class' => 'btn btn-xs btn-primary mod-site-save'])
+]);
 
+?>
 <div class="row">
 <div class="col-sm-12">
 

@@ -65,6 +65,9 @@ $host =  \Yii::$app->request->getHostInfo();
     <script src="<?=$host?>/statics/js/html5shiv.min.js"></script>
     <script src="<?=$host?>/statics/js/respond.min.js"></script>
     <![endif]-->
+    <style>
+
+    </style>
 </head>
 
 <body class="no-skin">

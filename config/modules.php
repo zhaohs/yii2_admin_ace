@@ -18,4 +18,7 @@ return [
     'menu' => [
         'class' => 'app\modules\menu\Module',
     ],
+    'dict' => [
+        'class' => 'app\modules\dict\Module',
+    ],
 ];

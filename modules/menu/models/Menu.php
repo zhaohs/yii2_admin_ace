@@ -67,6 +67,23 @@ class Menu extends \yii\db\ActiveRecord
         ];
         return ArrayHelper::getItems($items, $attribute);
     }
+    public  function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'parent_id' => '父结点',
+            'category_id' => '分类',
+            'name' => '名称',
+            'url' => '链接地址',
+            'target' => '打开方式',
+            'targetText' => '打开方式',
+            'description' => '描述',
+            'thumb' => '图片',
+            'status' => '状态',
+            'statusText' => '状态',
+            'sort_num' => '排序',
+        ];
+    }
 
 
 

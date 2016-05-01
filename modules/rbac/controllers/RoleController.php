@@ -119,7 +119,7 @@ class RoleController extends \app\libs\BackController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        Role::findOne(['id'=>$id])->delete();
 
         return $this->redirect(['index']);
     }

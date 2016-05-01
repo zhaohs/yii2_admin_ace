@@ -24,7 +24,7 @@ $columns =  [
                 'class' => '\yii\grid\ActionColumn',
 				'template'=>'{permission} {update} {delete}',
 				'buttons' =>['permission'=>function ($url,$model) {
-				    return Html::a('<img src="'.\Yii::$app->request->getHostInfo().'/assets/images/key.png">', Url::to(['relation','role'=>$model['id']]), [
+				    return Html::a('<img src="'.\Yii::$app->request->getHostInfo().'/statics/images/key.png">', Url::to(['relation','role'=>$model['id']]), [
 				        'title' => '设置权限',
 				    ]);
 				},'delete'=>function($url,$model){
@@ -32,7 +32,7 @@ $columns =  [
 				    {
 				        return '';
 				    }
-				    return Html::a('<img src="'.\Yii::$app->request->getHostInfo().'/assets/images/cross.png">', $url, [
+				    return Html::a('<img src="'.\Yii::$app->request->getHostInfo().'/statics/images/cross.png">', $url, [
 				        'title' => Yii::t('yii', 'Delete'),
 				        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
 				        'data-method' => 'post',
@@ -41,19 +41,11 @@ $columns =  [
 				}],
 			],
         ];
+
+\app\libs\Utility::viewToolsBars([
+    Html::a('新建', ['create'], ['class' => 'btn btn-xs btn-primary mod-site-save'])
+]);
 ?>
-
-<div class="row">
-    <div class="col-sm-12">
-        <a href="/rbac/role/create">
-            <button type="button" class="widget-toolbar" style="float:left">
-                <span class="bigger-110">新建</span>
-            </button></a>
-    </div>
-</div>
-
-
-
 
 <div class="row">
     <div class="col-sm-12">

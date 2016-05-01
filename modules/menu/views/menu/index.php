@@ -16,15 +16,11 @@ $this->title = $categoryModel['name'];
 $this->params['breadcrumbs'] = [
             ['label' => '菜单管理',['/menu']],
 		];
-
+\app\libs\Utility::viewToolsBars([
+    Html::a('返回', ['/menu/menu-category'], ['class' => 'btn btn-xs btn-primary mod-site-save']),
+    Html::a('新建', ['create','category'=>$category], ['class' => 'btn btn-xs btn-primary mod-site-save'])
+]);
 ?>
-<div class="row">
-    <a href="/menu/menu/create?category=<?= $category; ?>">
-        <button type="button" class="widget-toolbar" style="float:left">
-            <span class="bigger-110">新建</span>
-        </button></a>
-</div>
-   
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
