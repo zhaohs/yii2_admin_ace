@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\libs\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model source\models\DictCategory */
@@ -22,7 +22,5 @@ use yii\widgets\ActiveForm;
     
         <?= $form->field($model, 'description')->textarea(['maxlength' => 512])?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? '创建' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+<?= $form->defaultButtons($model) ?>
 <?php ActiveForm::end(); ?>

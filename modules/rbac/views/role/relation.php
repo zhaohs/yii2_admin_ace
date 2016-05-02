@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use yii\widgets\ActiveForm;
+use app\libs\widgets\ActiveForm;
 use app\modules\rbac\models\Permission;
 
 /* @var $this yii\web\View */
@@ -23,8 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
             margin-bottom: 2px;
             padding-top: 4px;
             padding-bottom: 4px;
-
-
             text-overflow: ellipsis;
 
         }
@@ -165,8 +163,6 @@ $this->params['breadcrumbs'][] = $this->title;
         </div><!-- /.col -->
     </div><!-- /.row -->
 
-    <div class="form-group">
-        <?= Html::submitButton('Update', ['class' =>  'btn btn-primary']) ?>
-    </div>
+<?= $form->defaultButtons() ?>
 
     <?php ActiveForm::end();?>

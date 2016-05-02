@@ -21,7 +21,8 @@
         "yiisoft/yii2-mongodb": "~2.0.0",
         "yiisoft/yii2-swiftmailer": "*",
         "predis/predis": "1.0.3",
-        "composer/installers": "~1.0"
+        "composer/installers": "~1.0",
+        "trntv/yii2-aceeditor": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\libs\widgets\ActiveForm;
 use app\modules\menu\models\Menu;
 use app\libs\Common;
 use app\libs\Constants;
@@ -29,15 +29,19 @@ $options = TreeHelper::buildTreeOptionsForSelf($taxonomies, $model);
 ?>
 
     <?php $form = ActiveForm::begin(); ?>
-    <div class="da-form-row">
-        <label>父结点</label>
-        <div class="da-form-item small">
-            <?php echo Html::activeHiddenInput($model, 'category_id')?>
-            <select type="text" id="menu-parent_id" class="form-control" name="Menu[parent_id]">
-            <?php echo $options?>
-            </select>
-        </div>
-    </div>                 
+
+
+<div class="form-group field-menu-name required">
+    <label class="col-xs-12 col-sm-3 control-label no-padding-right" for="menu-name">父结点</label>
+    <div class="col-xs-12 col-sm-5">
+        <span class="block input-icon input-icon-right">
+             <select type="text" id="menu-parent_id" class="form-control" name="Menu[parent_id]">
+                 <?php echo $options?>
+             </select>
+        </span>
+    </div>
+    <div class="help-block col-xs-12 col-sm-reset inline"></div>
+</div>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 64]) ?>
     <?= $form->field($model, 'description')->textInput(['maxlength' => 512]) ?>
@@ -54,7 +58,6 @@ $options = TreeHelper::buildTreeOptionsForSelf($taxonomies, $model);
     
     <?= $form->field($model, 'status')->radioList(Constants::getStatusItems()) ?>
 
-<div class="form-group">
-    <?= Html::submitButton($model->isNewRecord ? '创建' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-</div>
+<?= $form->defaultButtons($model) ?>
+
 <?php ActiveForm::end(); ?>

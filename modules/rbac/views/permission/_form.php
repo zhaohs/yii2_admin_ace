@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\libs\widgets\ActiveForm;
 use app\modules\rbac\models\Category;
 use app\modules\rbac\models\Permission;
 
@@ -33,8 +33,6 @@ use app\modules\rbac\rules\Rule;
 
     <?= $form->field($model, 'sort_num')->textInput(['maxlength' => true]) ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+    <?= $form->defaultButtons($model) ?>
 
     <?php ActiveForm::end(); ?>

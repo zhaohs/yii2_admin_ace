@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\libs\widgets\ActiveForm;
 use app\modules\rbac\models\Category;
 use app\libs\Constants;
 use app\modules\rbac\models\Role;
@@ -24,7 +24,5 @@ use app\modules\rbac\models\Role;
 
     <?= $form->field($model, 'description')->textarea() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+    <?= $form->defaultButtons($model) ?>
     <?php ActiveForm::end(); ?>

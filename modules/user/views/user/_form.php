@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\libs\widgets\ActiveForm;
 use app\models\Menu;
 use app\libs\Common;
 use app\libs\Constants;
@@ -26,9 +26,6 @@ use app\modules\rbac\models\Role;
 
     <?= $form->field($model, 'status')->radioList(Constants::getStatusItems()) ?>
 
-
-    <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
+    <?= $form->defaultButtons($model) ?>
 
     <?php ActiveForm::end(); ?>
