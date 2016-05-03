@@ -8,11 +8,13 @@ use app\assets\AppAsset;
 AppAsset::register($this);
 $host =  \Yii::$app->request->getHostInfo();
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<?php $this->beginPage() ?>
+<!doctype html>
+<html lang="<?= Yii::$app->language ?>">
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
+    <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
 
     <meta name="description" content="overview &amp; stats" />
@@ -71,6 +73,7 @@ $host =  \Yii::$app->request->getHostInfo();
 </head>
 
 <body class="no-skin">
+<?php $this->beginBody() ?>
 <!-- #section:basics/navbar.layout -->
 <div id="navbar" class="navbar navbar-default">
 <script type="text/javascript">
@@ -462,5 +465,7 @@ jQuery(function($) {
 <script src="<?=$host?>/docs/assets/js/language/html.js"></script>
 <script src="<?=$host?>/docs/assets/js/language/css.js"></script>
 <script src="<?=$host?>/docs/assets/js/language/javascript.js"></script>
+<?php $this->endBody() ?>
 </body>
 </html>
+<?php $this->endPage() ?>

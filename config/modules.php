@@ -21,4 +21,7 @@ return [
     'dict' => [
         'class' => 'app\modules\dict\Module',
     ],
+    'role' => [
+        'class' => 'app\modules\role\Module',
+    ],
 ];

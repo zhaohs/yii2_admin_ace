@@ -22,7 +22,7 @@ $columns =  [
 
             [
                 'class' => '\yii\grid\ActionColumn',
-				'template'=>'{permission} {update} {delete}',
+				'template'=>'{permission} {update} {delete} {role-city}',
 				'buttons' =>['permission'=>function ($url,$model) {
 				    return Html::a('<img src="'.\Yii::$app->request->getHostInfo().'/statics/images/key.png">', Url::to(['relation','role'=>$model['id']]), [
 				        'title' => '设置权限',
@@ -34,11 +34,13 @@ $columns =  [
 				    }
 				    return Html::a('<img src="'.\Yii::$app->request->getHostInfo().'/statics/images/cross.png">', $url, [
 				        'title' => Yii::t('yii', 'Delete'),
-				        'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
-				        'data-method' => 'post',
-				        'data-pjax' => '0'
 				    ]);
-				}],
+				},
+                    'role-city' => function($url, $model){
+                        return Html::a('角色地区管理', '/role/role-city?category=' . $model->id, [
+                        ]);
+                    },
+                ],
 			],
         ];
 

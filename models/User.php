@@ -158,11 +158,13 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 
     public function beforeSave($insert)
     {
+        $this->updated_at = time();
         if($this->isNewRecord)
         {
             $this->generateAuthKey();
             $this->generatePasswordHash();
             //$this->generatePasswordResetToken();
+            $this->created_at = time();
         }
         else
         {

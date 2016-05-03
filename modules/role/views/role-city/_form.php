@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use app\libs\widgets\ActiveForm;
-use app\modules\dict\models\Dict;
+use app\modules\menu\models\Menu;
 use app\libs\Common;
 use app\libs\Constants;
 use app\libs\TreeHelper;
@@ -14,25 +14,28 @@ use app\libs\TreeHelper;
 $category=$model->category_id;
 
 
-$categories = Dict::getArrayTree($category);
+$taxonomies = Menu::getArrayTree($category);
 
-$options = TreeHelper::buildTreeOptionsForSelf($categories, $model);
+$options = TreeHelper::buildTreeOptionsForSelf($taxonomies, $model);
 
 ?>
+<style>
 
+</style>
 <?php
 \app\libs\Utility::viewToolsBars([
-    Html::a('返回', ['index'], ['class' => 'btn btn-xs btn-primary mod-site-save'])
+    Html::a('返回', ['index','category'=>$category], ['class' => 'btn btn-xs btn-primary mod-site-save'])
 ]);
 ?>
 
     <?php $form = ActiveForm::begin(); ?>
 
+
 <div class="form-group field-menu-name required">
     <label class="col-xs-12 col-sm-3 control-label no-padding-right" for="menu-name">父结点</label>
     <div class="col-xs-12 col-sm-5">
         <span class="block input-icon input-icon-right">
-             <select type="text" id="menu-parent_id" class="form-control" name="Dict[parent_id]">
+             <select type="text" id="menu-parent_id" class="form-control" name="Menu[parent_id]">
                  <?php echo $options?>
              </select>
         </span>
@@ -41,15 +44,20 @@ $options = TreeHelper::buildTreeOptionsForSelf($categories, $model);
 </div>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => 64]) ?>
+    <?= $form->field($model, 'description')->textInput(['maxlength' => 512]) ?>
 
-    <?= $form->field($model, 'value')->textarea() ?>
+    <?= $form->field($model, 'url')->textInput(['maxlength' => 512]) ?>
 
-    <?= $form->field($model, 'thumb')->textInput(['maxlength' => 512]) ?>
-    <?= $form->field($model, 'description')->textarea(['maxlength' => 512]) ?>    
+    <?= $form->field($model, 'target')->radioList(Constants::getTargetItems()) ?>
 
+    
+
+    <?= $form->field($model, 'thumb')->fileInput(['class'=>'da-custom-file']) ?>
+    
     <?= $form->field($model, 'sort_num')->textInput() ?>
+    
     <?= $form->field($model, 'status')->radioList(Constants::getStatusItems()) ?>
 
-    <?= $form->defaultButtons($model) ?>
-    <?php ActiveForm::end(); ?>
+<?= $form->defaultButtons($model) ?>
 
+<?php ActiveForm::end(); ?>
